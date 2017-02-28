@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.business.system.dao.TsDictionaryMapper">
+  <resultMap id="BaseResultMap" type="net.business.system.entity.TsDictionary">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType" />
+    <result column="ITEM_CODE" jdbcType="VARCHAR" property="itemCode" />
+    <result column="ITEM_NAME" jdbcType="VARCHAR" property="itemName" />
+    <result column="ITEM_VALUE" jdbcType="VARCHAR" property="itemValue" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="SORT_CODE" jdbcType="INTEGER" property="sortCode" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DICT_TYPE, ITEM_CODE, ITEM_NAME, ITEM_VALUE, PARENT_CODE, SORT_CODE, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ts_dictionary
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ts_dictionary
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.business.system.entity.TsDictionary">
+    insert into ts_dictionary (ID, DICT_TYPE, ITEM_CODE, 
+      ITEM_NAME, ITEM_VALUE, PARENT_CODE, 
+      SORT_CODE, REMARK)
+    values (#{id,jdbcType=INTEGER}, #{dictType,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{itemValue,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{sortCode,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.business.system.entity.TsDictionary">
+    insert into ts_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="dictType != null">
+        DICT_TYPE,
+      </if>
+      <if test="itemCode != null">
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null">
+        ITEM_NAME,
+      </if>
+      <if test="itemValue != null">
+        ITEM_VALUE,
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE,
+      </if>
+      <if test="sortCode != null">
+        SORT_CODE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dictType != null">
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null">
+        #{itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortCode != null">
+        #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.business.system.entity.TsDictionary">
+    update ts_dictionary
+    <set>
+      <if test="dictType != null">
+        DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null">
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null">
+        ITEM_VALUE = #{itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortCode != null">
+        SORT_CODE = #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.business.system.entity.TsDictionary">
+    update ts_dictionary
+    set DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_VALUE = #{itemValue,jdbcType=VARCHAR},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      SORT_CODE = #{sortCode,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

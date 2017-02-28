@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.business.system.dao.TsDicttypeMapper">
+  <resultMap id="BaseResultMap" type="net.business.system.entity.TsDicttype">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName" />
+    <result column="IS_VALID" jdbcType="VARCHAR" property="isValid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DICT_NAME, IS_VALID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ts_dicttype
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ts_dicttype
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="net.business.system.entity.TsDicttype">
+    insert into ts_dicttype (ID, DICT_NAME, IS_VALID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, #{isValid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.business.system.entity.TsDicttype">
+    insert into ts_dicttype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="dictName != null">
+        DICT_NAME,
+      </if>
+      <if test="isValid != null">
+        IS_VALID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.business.system.entity.TsDicttype">
+    update ts_dicttype
+    <set>
+      <if test="dictName != null">
+        DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        IS_VALID = #{isValid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.business.system.entity.TsDicttype">
+    update ts_dicttype
+    set DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      IS_VALID = #{isValid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
